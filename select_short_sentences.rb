@@ -11,16 +11,27 @@ def find_sentences(opts={})
 	lines.collect{|l| l.first}.reject{|l| l.length > opts[:length]}.collect{|l| l.gsub(/\r|\n/, " ")}
 end
 
-keys = [:question, :murderer, :witness, :saw, :scene, :killer, :weapon, :clue, :accuse, :reveal]
-sentences = {}
+# issue 1 keys = [:question, :murderer, :witness, :saw, :scene, :killer, :weapon, :clue, :accuse, :reveal]
+# issue 2 keys = [:detective, :woman, :lips, :shot, :chase, :fight, :body, :victim, :blood, :detective]
+keys = [:moon, :murder, :discover, :she, :kill, :body]
+
+scifi_sentences = {}
+detective_sentences = {}
 
 ARGV.each do |path|
 
-
-
 	txt = open(path).read
+
 	keys.each do |k|
-		sentences[k] = find_sentences({:corpus => txt, :word => k.to_s, :length => 160})
+		sentence = find_sentences({:corpus => txt, :word => k.to_s, :length => 160})
+
+		if path =~ /scifi/
+			puts "scifi"
+			scifi_sentences[k] = sentence 		
+		elsif path =~ /detective/
+			puts "detective"
+			detective_sentences[k] = sentence
+		end
 	end
 	
 	#lines = txt.split(/\n/)
@@ -33,6 +44,14 @@ end
 # end
 
 keys.each do |k|
+	if rand > 0.5
+		sentences = scifi_sentences
+		print "scifi: "
+	else
+		sentences = detective_sentences
+		print "detective: "
+	end
+
 	if sentences[k].length > 0
 		puts sentences[k].sample
 	end
