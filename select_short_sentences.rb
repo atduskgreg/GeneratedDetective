@@ -13,10 +13,14 @@ end
 
 # issue 1 keys = [:question, :murderer, :witness, :saw, :scene, :killer, :weapon, :clue, :accuse, :reveal]
 # issue 2 keys = [:detective, :woman, :lips, :shot, :chase, :fight, :body, :victim, :blood, :detective]
-keys = [:moon, :murder, :discover, :she, :kill, :body]
+# issue 3 keys = [:moon, :murder, :discover, :she, :kill, :body]
+# issue 4 keys = [:chill, :shadow, :body, :blood, :woman, :kill, :detective]
+
+keys = [:hunt, :monster, :night, :woman, :murder, :body, :flee]
 
 scifi_sentences = {}
 detective_sentences = {}
+romance_sentences = {}
 
 ARGV.each do |path|
 
@@ -31,6 +35,9 @@ ARGV.each do |path|
 		elsif path =~ /detective/
 			puts "detective"
 			detective_sentences[k] = sentence
+		elsif path =~ /romance/
+			puts "romance"
+			romance_sentences[k] = sentence
 		end
 	end
 	
@@ -44,12 +51,17 @@ end
 # end
 
 keys.each do |k|
-	if rand > 0.5
+	r = rand
+
+	if r < 0.33
 		sentences = scifi_sentences
 		print "scifi: "
-	else
+	elsif r > 0.33 && r < 0.66
 		sentences = detective_sentences
 		print "detective: "
+	else 
+		sentences = detective_sentences
+		print "romance: "
 	end
 
 	if sentences[k].length > 0

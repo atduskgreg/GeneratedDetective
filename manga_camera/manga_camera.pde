@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 PImage img;
 PImage resultImg, processed;
-float blackThreshold = 70;
-float whiteThreshold = 130;
+float blackThreshold = 30;
+float whiteThreshold = 110;
 int gridSpacing = 5;
 PFont font;
 int fontSize = 16;
@@ -14,14 +14,14 @@ int nLines = 1;
 
 OpenCV opencv; 
 
-String filename = "honeymoon.jpg";
-String caption = "They'd only just come home from the honeymoon when it happened.";
-boolean makeBalloon = true;
+String filename = "memory.jpg";
+String caption = "and I shall always cherish  the memory.";
+boolean makeBalloon = false;
 Rectangle face;
 
 void setup() {
   img = loadImage("images/"+filename); // original
-  img.resize(500, 0);
+  img.resize(0, 476);
   resultImg = createImage(img.width, img.height, ARGB);
   font = loadFont("CCComicrazy-Regular-48.vlw");
   textFont(font, fontSize);
