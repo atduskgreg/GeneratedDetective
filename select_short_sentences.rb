@@ -15,8 +15,9 @@ end
 # issue 2 keys = [:detective, :woman, :lips, :shot, :chase, :fight, :body, :victim, :blood, :detective]
 # issue 3 keys = [:moon, :murder, :discover, :she, :kill, :body]
 # issue 4 keys = [:chill, :shadow, :body, :blood, :woman, :kill, :detective]
+# issue 5 keys = [:hunt, :monster, :night, :woman, :murder, :body, :flee]
 
-keys = [:hunt, :monster, :night, :woman, :murder, :body, :flee]
+keys = [:knife, :knife, :knife, :knife, :knife]
 
 scifi_sentences = {}
 detective_sentences = {}

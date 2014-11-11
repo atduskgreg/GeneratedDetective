@@ -21,13 +21,22 @@ img {
 .next {
 	float: right
 }
+img {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.last {
+	margin-right: 0;
+}
 </style>
 <body>
-<div style="width:500px; margin:0 auto">
+<div style="width:1000px; margin:0 auto">
 	<p><b>Generated Detective #1</b> by Greg Borenstein</br></p>
 
-<% paths.each do |path| %>
-	<img src="<%= path %>" /><br />
+<% paths.each_with_index do |path, i| %>
+	<img <% if i == paths.length-1 %>class="last"<% end %> src="<%= path %>" /><br />
 <% end %>
 <p><span class="prev"><a href="../1">prev</a></span> <!-- <span class="next"><a href="../3">next</a></span> --></p>
 	<br style="clear:both" />
