@@ -36,7 +36,7 @@ img {
 	<p><b>Generated Detective #1</b> by Greg Borenstein</br></p>
 
 <% paths.each_with_index do |path, i| %>
-	<img <% if i == paths.length-1 %>class="last"<% end %> src="<%= path %>" /><br />
+	<img <% if i == paths.length-1 %>class="last"<% end %> src="<%= path %>" />
 <% end %>
 <p><span class="prev"><a href="../1">prev</a></span> <!-- <span class="next"><a href="../3">next</a></span> --></p>
 	<br style="clear:both" />
