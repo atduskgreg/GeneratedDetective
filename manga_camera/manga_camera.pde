@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 PImage img;
 PImage resultImg, processed;
-float blackThreshold = 30;
-float whiteThreshold = 110;
+float blackThreshold = 70;
+float whiteThreshold = 130;
 int gridSpacing = 5;
 PFont font;
 int fontSize = 16;
@@ -14,14 +14,14 @@ int nLines = 1;
 
 OpenCV opencv; 
 
-String filename = "memory.jpg";
-String caption = "and I shall always cherish  the memory.";
+String filename = "absolute_silence.jpg";
+String caption = "There was absolute silence--";
 boolean makeBalloon = false;
 Rectangle face;
 
 void setup() {
   img = loadImage("images/"+filename); // original
-  img.resize(0, 476);
+  img.resize(1000, 0);
   resultImg = createImage(img.width, img.height, ARGB);
   font = loadFont("CCComicrazy-Regular-48.vlw");
   textFont(font, fontSize);
@@ -154,7 +154,7 @@ void draw() {
     vertex(x+20-1, y + 100);
     vertex(x + 35+3, y+100);
     endShape();
-    drawBubble(x-1, y+75-1, 160+2, 75+2);
+    drawBubble(x-1, y+75-1, 180+2, 55+2);
     
     fill(255);
     noStroke();
@@ -163,7 +163,7 @@ void draw() {
     vertex(x+20, y + 100);
     vertex(x + 35, y+100);
     endShape();
-    drawBubble(x, y+75, 160, 75);
+    drawBubble(x, y+75, 180, 55);
 
 
     stroke(0);

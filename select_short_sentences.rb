@@ -11,14 +11,20 @@ def find_sentences(opts={})
 	lines.collect{|l| l.first}.reject{|l| l.length > opts[:length]}.collect{|l| l.gsub(/\r|\n/, " ")}
 end
 
+def all_sentences(opts={})
+	regex = Regexp.new "\.([^\.]*\.)"
+	lines = opts[:corpus].scan(regex)
+	lines.collect{|l| l.first}.reject{|l| l.length > opts[:length]}.collect{|l| l.gsub(/\r|\n/, " ")}
+end
+
 # issue 1 keys = [:question, :murderer, :witness, :saw, :scene, :killer, :weapon, :clue, :accuse, :reveal]
 # issue 2 keys = [:detective, :woman, :lips, :shot, :chase, :fight, :body, :victim, :blood, :detective]
 # issue 3 keys = [:moon, :murder, :discover, :she, :kill, :body]
 # issue 4 keys = [:chill, :shadow, :body, :blood, :woman, :kill, :detective]
 # issue 5 keys = [:hunt, :monster, :night, :woman, :murder, :body, :flee]
 # issue 6 keys = [:knife, :knife, :knife, :knife, :knife]
-
-keys = [:woman, :woman, :woman, :woman, :woman]
+# issue 7 keys = [:woman, :woman, :woman, :woman, :woman]
+keys = [1,2,3,4,5]
 
 scifi_sentences = {}
 detective_sentences = {}
@@ -29,7 +35,7 @@ ARGV.each do |path|
 	txt = open(path).read
 
 	keys.each do |k|
-		sentence = find_sentences({:corpus => txt, :word => k.to_s, :length => 160})
+		sentence = all_sentences({:corpus => txt, :word => k.to_s, :length => 160})
 
 		if path =~ /scifi/
 			puts "scifi"
