@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 PImage img;
 PImage resultImg, processed;
-float blackThreshold = 70;
-float whiteThreshold = 130;
+float blackThreshold = 160;
+float whiteThreshold = 200;
 int gridSpacing = 5;
 PFont font;
 int fontSize = 16;
@@ -14,14 +14,14 @@ int nLines = 1;
 
 OpenCV opencv; 
 
-String filename = "absolute_silence.jpg";
-String caption = "There was absolute silence--";
+String filename = "settlement_next_morning.jpg";
+String caption = "These books had been handed to him on the very\nevening of his death for settlement next morning.";
 boolean makeBalloon = false;
 Rectangle face;
 
 void setup() {
   img = loadImage("images/"+filename); // original
-  img.resize(1000, 0);
+  img.resize(0, 525);
   resultImg = createImage(img.width, img.height, ARGB);
   font = loadFont("CCComicrazy-Regular-48.vlw");
   textFont(font, fontSize);
@@ -38,7 +38,8 @@ void setup() {
 
   if (makeBalloon) {
     opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
-    face = opencv.detect()[0];
+    Rectangle[] faces = opencv.detect();
+    face = faces[0];
   }
 
   // run a canny edge filter
@@ -79,22 +80,22 @@ void setup() {
   noLoop(); // if we draw over and over, blendMode(MULTIPLY) goes nuts
 }
 
-void drawBubble(float x, float y, int w, int h){    
+void drawBubble(float x, float y, int w, int h) {    
 
   beginShape();
 
-  curveVertex(x,y);
+  curveVertex(x, y);
   curveVertex(x+w, y);
   curveVertex(x+w, y+h);
   curveVertex(x, y+h);
-   curveVertex(x,y);
+  curveVertex(x, y);
   curveVertex(x+w, y);
   curveVertex(x+w, y+h);
 
-//  curveVertex(x-10, y+h/2);
+  //  curveVertex(x-10, y+h/2);
 
-//  curveVertex(x, y);
-  
+  //  curveVertex(x, y);
+
   endShape();
 }
 
@@ -133,20 +134,20 @@ void draw() {
   float rHeight = (fontSize*2)*nLines;
 
   int rTop = height-40;
-  if (nLines == 2) {
+  if (nLines > 1) {
     rTop = height - 75;
   }
   int topMargin = 0;
   if (nLines == 1) {
-    topMargin = 5;
+    topMargin = -10;
   }
 
   if (makeBalloon) {
     //    PGraphics bCanvas = createGraphics(width, height);
     //    bCanvas.beginDraw();
-    float x = face.x + face.width/2 + face.width/4;
+    float x = face.x + face.width/2;// + face.width/2 + face.width/4;
     float y = face.y + face.height/2 + face.height/4;
-    
+
     fill(0);
     noStroke();
     beginShape();
@@ -154,8 +155,8 @@ void draw() {
     vertex(x+20-1, y + 100);
     vertex(x + 35+3, y+100);
     endShape();
-    drawBubble(x-1, y+75-1, 180+2, 55+2);
-    
+    drawBubble(x-1, y+75-1, 200+2, 85+2);
+
     fill(255);
     noStroke();
     beginShape();
@@ -163,13 +164,12 @@ void draw() {
     vertex(x+20, y + 100);
     vertex(x + 35, y+100);
     endShape();
-    drawBubble(x, y+75, 180, 55);
+    drawBubble(x, y+75, 200, 85);
 
 
     stroke(0);
     fill(0);
     text(caption, x, y+110);
-
   } 
   else {
     rect(10, rTop, rWidth, rHeight);
@@ -178,8 +178,8 @@ void draw() {
     //noFill();
     //  noStroke();
     stroke(0);
-    text(caption, 10+(rWidth-cw)/2.0, rTop + rHeight/2 + topMargin);
-
+    text(caption, 10+(rWidth-cw)/2.0, rTop + rHeight/nLines + topMargin);
+   }
     pushStyle();
     noFill();
     stroke(0);
@@ -187,7 +187,7 @@ void draw() {
     rect(0, 0, width-2, height-2);
 
     popStyle();
-  }
+ 
 
   println("processed/"+filename);
   save("processed/"+filename);

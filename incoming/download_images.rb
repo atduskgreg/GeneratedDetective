@@ -15,6 +15,7 @@ FlickRaw.shared_secret = flickr_credentials[:shared_secret]
 args = {}
 args[:license] = "4,5,1,2"# ,7,8 "Attribution-ShareAlike"# License,Attribution License,No known copyright restrictions,United States Government Work,Attribution-NonCommercial-ShareAlike License,Attribution-NonCommercial License"
 args[:text] = ARGV.collect{|a| "\"#{a}\""}.join(" ")
+args[:sort] = "interestingness-desc"
 
 puts args[:text]
 

@@ -24,7 +24,10 @@ end
 # issue 5 keys = [:hunt, :monster, :night, :woman, :murder, :body, :flee]
 # issue 6 keys = [:knife, :knife, :knife, :knife, :knife]
 # issue 7 keys = [:woman, :woman, :woman, :woman, :woman]
-keys = [1,2,3,4,5]
+# issue 8 keys = [1,2,3,4,5]
+# issue 9 keys = [:death, :death, :death, :death, :death ]
+
+keys = [:love, :love, :love, :love, :love]
 
 scifi_sentences = {}
 detective_sentences = {}
@@ -35,7 +38,7 @@ ARGV.each do |path|
 	txt = open(path).read
 
 	keys.each do |k|
-		sentence = all_sentences({:corpus => txt, :word => k.to_s, :length => 160})
+		sentence = find_sentences({:corpus => txt, :word => k.to_s, :length => 160})
 
 		if path =~ /scifi/
 			puts "scifi"
