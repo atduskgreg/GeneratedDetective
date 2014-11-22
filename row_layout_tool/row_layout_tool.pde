@@ -36,7 +36,9 @@ void draw() {
     rect(25, height-45, 30, 20);
     fill(255);
     text("add", 30, height-30);
-     fill(0);
+    fill(255);
+    rect(20, height-25, 110, 20);
+    fill(0);
     text("row height: " + rowHeight, 25, height-10);
     
     popStyle();

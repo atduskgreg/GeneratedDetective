@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 PImage img;
 PImage resultImg, processed;
-float blackThreshold = 160;
-float whiteThreshold = 200;
+float blackThreshold = 70;
+float whiteThreshold = 120;
 int gridSpacing = 5;
 PFont font;
 int fontSize = 16;
@@ -14,14 +14,14 @@ int nLines = 1;
 
 OpenCV opencv; 
 
-String filename = "settlement_next_morning.jpg";
-String caption = "These books had been handed to him on the very\nevening of his death for settlement next morning.";
+String filename = "14bid_him_welcome.jpg";
+String caption = "we shall bid him welcome\nin true fashion of our land.";
 boolean makeBalloon = false;
 Rectangle face;
 
 void setup() {
   img = loadImage("images/"+filename); // original
-  img.resize(0, 525);
+  img.resize(0, 235);
   resultImg = createImage(img.width, img.height, ARGB);
   font = loadFont("CCComicrazy-Regular-48.vlw");
   textFont(font, fontSize);
@@ -179,15 +179,15 @@ void draw() {
     //  noStroke();
     stroke(0);
     text(caption, 10+(rWidth-cw)/2.0, rTop + rHeight/nLines + topMargin);
-   }
-    pushStyle();
-    noFill();
-    stroke(0);
-    strokeWeight(3);
-    rect(0, 0, width-2, height-2);
+  }
+  pushStyle();
+  noFill();
+  stroke(0);
+  strokeWeight(3);
+  rect(0, 0, width-2, height-2);
 
-    popStyle();
- 
+  popStyle();
+
 
   println("processed/"+filename);
   save("processed/"+filename);
